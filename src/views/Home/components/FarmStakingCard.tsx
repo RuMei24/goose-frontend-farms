@@ -16,10 +16,7 @@ import useAllEarnings from '../../../hooks/useAllEarnings'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 
 const StyledFarmStakingCard = styled(Card)`
-  background-image: url('/images/egg/2a.png');
-  background-repeat: no-repeat;
-  background-position: top right;
-  min-height: 376px;
+
 `
 
 const Block = styled.div`
@@ -38,7 +35,26 @@ const Label = styled.div`
 const Actions = styled.div`
   margin-top: 24px;
 `
-
+const Test = styled.div`
+  margin-top: 12x;
+`
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+`
+const Row1 = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0px, 1fr));
+`
+const Word = styled.div`
+  font-size: 1.75rem;
+  margin-bottom: 12px;
+  line-height: 32px;
+`
+const Title = styled.div`
+  font-size: 1.75rem;
+  font-weight: 600;
+`
 const FarmedStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWallet()
@@ -68,20 +84,25 @@ const FarmedStakingCard = () => {
   return (
     <StyledFarmStakingCard>
       <CardBody>
-        <Heading size="xl" mb="24px">
-          {TranslateString(542, 'Farms & Staking')}
-        </Heading>
+        <Row>
+          <Block>
+      <Test><text fontSize="1rem"> Track your Gains and Harvest</text></Test>
+      <Title>Staking Dashboard</Title>
+        </Block>
         <CardImage src="/images/egg/2.png" alt="cake logo" width={64} height={64} />
+        </Row>
+        <Row1>
         <Block>
           <Label>{TranslateString(544, 'EGG to Harvest')}</Label>
           <CakeHarvestBalance earningsSum={earningsSum}/>
           <Label>~${(eggPrice * earningsSum).toFixed(2)}</Label>
         </Block>
         <Block>
-          <Label>{TranslateString(546, 'EGG in Wallet')}</Label>
-          <CakeWalletBalance cakeBalance={cakeBalance} />
+          <Label>{TranslateString(546, 'RUMEI in Wallet')}</Label>
+          <Word><text fontSize='1.75rem'>LOCKED</text></Word>
           <Label>~${(eggPrice * cakeBalance).toFixed(2)}</Label>
         </Block>
+        </Row1>
         <Actions>
           {account ? (
             <Button

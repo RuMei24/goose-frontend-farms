@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import styled, { keyframes } from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
@@ -17,9 +18,16 @@ import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
 import Divider from './components/Divider'
 
+
+
 export interface FarmsProps{
   tokenMode?: boolean
 }
+
+const NewHeading = styled(Heading)`
+  font-size: 2.5rem;
+  text-align: center;
+`
 
 const Farms: React.FC<FarmsProps> = (farmsProps) => {
   const { path } = useRouteMatch()
@@ -32,6 +40,8 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
+
+
   useEffect(() => {
     if (account) {
       dispatch(fetchFarmUserDataAsync(account))
@@ -89,19 +99,19 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
     [bnbPrice, account, cakePrice, ethereum],
   )
 
+  
+
   return (
     <Page>
-      <Heading as="h1" size="lg" color="primary" mb="50px" style={{ textAlign: 'center' }}>
-        {
-          tokenMode ?
-            TranslateString(10002, 'Stake tokens to earn EGG')
-            :
-          TranslateString(320, 'Stake LP tokens to earn EGG')
-        }
+      <NewHeading>Weekly APR Reset</NewHeading>
+      <Heading as="h2" color="secondary" mb="50px" style={{ textAlign: 'center' }}>
+        Applies to ALL
       </Heading>
       <Heading as="h2" color="secondary" mb="50px" style={{ textAlign: 'center' }}>
-        {TranslateString(10000, 'Deposit Fee will be used to buyback EGG')}
+        {TranslateString(10000, 'Deposit Fee will be used to buybackk EGG')}
       </Heading>
+
+
       <FarmTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly}/>
       <div>
         <Divider />

@@ -16,6 +16,7 @@ const StyledSpacer = styled.div`
 
 const StyledTokenAdornmentWrapper = styled.div`
   align-items: center;
+  
   display: flex;
 `
 
